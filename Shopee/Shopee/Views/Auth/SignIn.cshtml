@@ -1,0 +1,26 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<div class="border-5 box">
+    <h1>Sign In</h1><br />
+    <form asp-action="SignIn">
+        <div class="form-group col-10">
+            <label>Email address</label>
+            <input type="email" class="form-control" name="email" aria-describedby="emailHelp" placeholder="Enter email" required>
+        </div><br />
+        <div class="form-group col-10">
+            <label>Password</label>
+            <input type="password" class="form-control" name="password" placeholder="Password" required>
+        </div><br />
+        @if ("" + ViewData["err"] != "")
+        {
+            <p class="error-msg">@("" + ViewData["err"])</p>
+        }
+        <button type="submit" class="btn btn-primary">Submit</button><br /><br />
+        <p>Forgot password? <a asp-action="ForgotPassword">Recover password</a></p>
+        <p>Not a member? <a asp-action="SignUp">Sign up</a></p>
+    </form>
+</div>

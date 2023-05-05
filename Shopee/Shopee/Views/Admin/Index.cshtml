@@ -1,0 +1,31 @@
+﻿@model IEnumerable<Shopee.Models.InventoryModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+<div class="text-center">
+    <h1 class="text-white">Welcome, <i style="color:greenyellow">Admin</i>🙎‍♂️</h1>
+    <br />
+    <a asp-action="CreateItem" class="btn btn-success">New</a>
+    <a asp-action="Forum" class="btn btn-warning">Forum</a>
+    <a asp-controller ="Auth" asp-action="SignIn" class="btn btn-danger">Logout</a>
+</div>
+
+<br />
+
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="card" style="width: 12rem; margin-right:30px"><br />
+            <img src="~/Images/@(item.ItemImageName)" class="card-img-top" alt="..." style="width:150px;display:block;margin:auto;height:100px">
+            <div class="card-body">
+                <p class="card-text">Name: @(item.ItemName)</p>
+                <p class="card-text">Price: @(item.ItemPrice)</p>
+                <p class="card-text">Stock: @(item.ItemQuantity)</p>
+                <a class="btn btn-danger" asp-action="Delete" asp-route-itemId="@(item.ItemId)">Delete</a>
+            </div>
+        </div>
+    }
+</div>

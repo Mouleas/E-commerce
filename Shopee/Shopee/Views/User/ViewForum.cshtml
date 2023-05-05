@@ -1,0 +1,34 @@
+﻿@model List<ForumModel> 
+
+<h1 class="text-center" style="color:white">Forum📝</h1>
+<br />
+<div class="text-end">
+    <a class="btn btn-danger" asp-action="Index" asp-route-userId="@ViewBag.UserId">Back</a>
+</div>
+<br />
+@foreach (var item in Model){
+    <div class="card">
+        <div class="card-body row">
+            <div class="col col-4">
+                <h4 style="margin-left:10px">@item.ForumSubject</h4>
+            </div>
+            <div class="col col-4">
+                <p>@(item.ForumBody.Substring(0,Math.Min(item.ForumBody.Length,20)))...</p>
+            </div>
+            <div class="col col-4 text-end" style="margin-top: 5px">
+                @if (item.ForumStatus == 0)
+                {
+                    <i class="bg-danger text-white" style="width:fit-content;padding:2px 2px;font-size:13px">Pending</i>
+                }
+                else
+                {
+                    <i class="bg-success text-white" style="width:fit-content;padding:2px 2px;font-size:13px">Resolved</i>
+                }
+                <a class="btn btn-warning" asp-action="ForumEdit" asp-route-forumId="@(item.ForumId)" asp-route-userId="@(ViewBag.UserId)">✏</a>
+                <a class="btn btn-danger" asp-action="DeleteForum" asp-route-forumId="@(item.ForumId)" asp-route-userId="@(ViewBag.UserId)">❌</a>
+            </div>
+            
+        </div>
+    </div>
+    <br />
+}

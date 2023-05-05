@@ -1,0 +1,59 @@
+﻿@model IEnumerable<Shopee.Models.InventoryModel>
+
+@{
+    ViewData["Title"] = "Index";
+    Random random = new Random();
+}
+
+<h1 class="text-center" style="color:white">Welcome to <i style="color:greenyellow;font-weight:bolder">Shopee</i>🛒 
+        <select name="profile" style="border-radius:5px; height:30px; width:100px; appearance: none; font-size:15px" class="text-white bg-secondary text-center text-sm" onchange="location=this.value">
+        <option disabled hidden selected>Profile</option>
+        <option value="/User/UpdateProfile?userId=@(ViewBag.UserId)">Edit Profile</option>
+        <option value="/Auth/SignIn">Logout</option>
+        </select>
+    </h1>
+
+<br />
+
+<div class="text-center">
+    <a asp-action="Cart" asp-route-userId="@(ViewBag.UserId)" class="btn btn-primary">My Cart</a>
+    <a asp-action="ViewForum" asp-route-userId="@(ViewBag.UserId)" class="btn btn-warning">Forum</a>
+    <a asp-action="Order" asp-route-userId="@(ViewBag.UserId)" class="btn btn-success">Orders</a>
+</div>
+<br />
+<form asp-action="Search" asp-route-userId="@(ViewBag.UserId)">
+    <input type="text" placeholder="Enter item name" name="itemname" />
+    <input type="number" placeholder="Enter min price" name="price" />
+    <input type="text" placeholder="Enter category" name="category" />
+    <button type="submit" class="btn btn-danger" style="margin-bottom:8px;">Filter</button>
+</form>
+
+<br />
+<div class="row">
+    @foreach (var item in Model)
+    {
+       
+        <div class="card item" style="width: 13.5rem; margin-right:50px; margin-top:20px"><br />
+            <a asp-action="ItemDetails" asp-route-userId = "@(ViewBag.UserId)" asp-route-itemId="@(item.ItemId)" style="text-decoration:none; color:black">
+            <img src="~/Images/@(item.ItemImageName)" class="card-img-top" alt="..." style="width:160px;display:block;margin:auto;height:100px">
+            <div class="card-body">
+                 
+                <h6 class="text-center" style="background-color:dodgerblue;color:white">@(item.ItemName.ToUpper())</h6>
+                <p class="bg-warning text-center" style="font-size:12px;font-weight:500;margin-bottom:0px">⚡Get it within @(random.Next(2,7)) days</p>
+                <span class="card-text"><i style="font-size:25px;font-weight:bolder">$@(item.ItemPrice)</i></span>
+                <span style="font-size:13px;color:red;font-weight:500">&ensp;Only @(item.ItemQuantity) left...</span>
+                
+                <a class="btn btn-success" asp-action="AddCart" asp-route-itemId="@(item.ItemId)" asp-route-userId="@(ViewBag.UserId)">Add to cart</a>
+                <a class="btn btn-danger" asp-action="CreateForum" asp-route-itemId="@(item.ItemId)" asp-route-userId="@(ViewBag.UserId)">📝</a>
+                
+            </div>
+            </a>
+        </div>
+        
+    }
+</div>
+
+
+
+
+

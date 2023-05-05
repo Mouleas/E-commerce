@@ -1,0 +1,63 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@model Shopee.Models.InventoryModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1 class="text-white">Create a item</h1>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="CreateItem" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="ItemName" class="control-label text-white"></label>
+                <input asp-for="ItemName" class="form-control" name="itemName"/>
+                <span asp-validation-for="ItemName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ItemType" class="control-label text-white"></label>
+                <input asp-for="ItemType" class="form-control" name="itemType"/>
+                <span asp-validation-for="ItemType" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ItemPrice" class="control-label text-white"></label>
+                <input asp-for="ItemPrice" class="form-control" name="itemPrice"/>
+                <span asp-validation-for="ItemPrice" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ItemDescription" class="control-label text-white"></label>
+                <input asp-for="ItemDescription" class="form-control" name="itemDescription"/>
+                <span asp-validation-for="ItemDescription" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ItemQuantity" class=" control-label text-white"></label>
+                <input asp-for="ItemQuantity" class="form-control" name="itemQuantity"/>
+                <span asp-validation-for="ItemQuantity" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label text-white">ItemImage</label>
+                <input type="file" class="form-control" name="file" required/>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+                <a asp-action="Index" class="btn btn-danger">Back to List</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+

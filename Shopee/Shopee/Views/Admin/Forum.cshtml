@@ -1,0 +1,30 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model List<ForumModel> 
+
+<h1 class="text-center text-white">Forum📝</h1><br />
+<div class="text-end">
+    <a class="btn btn-danger" asp-action="Index">Back</a>
+</div>
+<br />
+@foreach (var item in Model){   
+    @if (item.ForumStatus == 0)
+    {
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col">
+                        <h3 style="width:fit-content; display:inline-block">@item.ForumSubject</h3>
+                        <p class="bg-danger text-white" style="padding:3px; width:fit-content; display:inline-block">Pending</p>
+                    </div>
+                </div>
+                <a class="btn btn-primary" asp-action="ForumEdit" asp-route-id="@(item.ForumId)">Reply</a>
+                <i>- @(item.User.UserEmail)</i>
+            </div>
+        </div>
+        <br />
+    }
+}

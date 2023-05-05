@@ -1,0 +1,28 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@model InventoryModel
+
+<div class="row">
+    <div class="col">
+        <img src="~/Images/@(Model.ItemImageName)" alt="..." style="width:300px;display:block;margin:auto;height:200px;border:solid;border-color:white">
+    </div>
+    <div class="col bg-white" style="border-radius:10px; padding:10px">
+        <h4 class="bg-primary" style="width:fit-content; color:white; border-radius:10px; margin-top:10px;padding:3px">@(Model.ItemName.ToUpper())</h4>
+        <h6 class="bg-warning" style="width:fit-content;color:white; border-radius:10px; margin-top:10px;padding:3px">Category: @(Model.ItemType.ToUpper())</h6>
+        <div style="background-color:dimgrey; border-radius:10px; padding:3px; color:white;">
+            <p style="margin-bottom:0px">Description:</p>
+            <p>@Model.ItemDescription</p>
+        </div>
+     
+        <span class="card-text"><i style="font-size:25px;font-weight:bolder">$@(Model.ItemPrice)</i></span>
+        <span style="font-size:13px;color:red;font-weight:500">&ensp;Only @(Model.ItemQuantity) left...</span>
+        <br />
+        <a class="btn btn-success" asp-action="AddCart" asp-route-itemId="@(Model.ItemId)" asp-route-userId="@(ViewBag.UserId)">Add to cart</a>
+        <a class="btn btn-danger" asp-action="CreateForum" asp-route-itemId="@(Model.ItemId)" asp-route-userId="@(ViewBag.UserId)">Open Forum</a>
+        <a class="btn btn-warning" asp-action="Index" asp-route-userId="@(ViewBag.UserId)">Back</a>
+    </div>
+</div>

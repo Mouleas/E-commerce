@@ -1,0 +1,37 @@
+﻿@model Shopee.Models.ForumModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h4 class="text-white">New Forum</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="CreateForum" enctype="multipart/form-data" asp-route-itemId="@(ViewBag.ItemId)" asp-route-userId=@(ViewBag.userId)>
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="ForumSubject" class="control-label text-white">Subject</label>
+                <input asp-for="ForumSubject" class="form-control" name="forumSubject"/>
+                <span asp-validation-for="ForumSubject" class="text-danger"></span>
+            </div><br />
+            <div class="form-group">
+                <label asp-for="ForumBody" class="control-label text-white">New message</label>
+                <input type="text" asp-for="ForumBody" class="form-control" name="forumBody" placeholder="Message"></input>
+                <span asp-validation-for="ForumBody" class="text-danger"></span>
+            </div><br />
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+                <a asp-action="Index" asp-route-userId="@(ViewBag.UserId)" class="btn btn-danger">Back to List</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
